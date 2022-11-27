@@ -16,6 +16,10 @@ const todoSchema = new Schema(
       type: String,
       required: [true, "Description is required"],
     },
+    // active: {
+    //   type: Boolean,
+    //   default: true,
+    // },
     owner: {
       type: Schema.Types.ObjectId,
       ref: "authUser",
