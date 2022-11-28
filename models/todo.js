@@ -10,16 +10,16 @@ const todoSchema = new Schema(
     },
     taskName: {
       type: String,
-      required: true,
+      required: [true, "Description is required"],
     },
     description: {
       type: String,
-      required: [true, "Description is required"],
+      required: false,
     },
-    // active: {
-    //   type: Boolean,
-    //   default: true,
-    // },
+    active: {
+      type: Boolean,
+      default: true,
+    },
     owner: {
       type: Schema.Types.ObjectId,
       ref: "authUser",
@@ -31,8 +31,8 @@ const todoSchema = new Schema(
 
 const joiTodoSchema = Joi.object({
   type: Joi.string().required(),
-  taskName: Joi.string().max(15),
-  description: Joi.string().required(),
+  taskName: Joi.string().max(15).min(1).required(),
+  description: Joi.string(),
 });
 
 const Todo = model("todo", todoSchema);
