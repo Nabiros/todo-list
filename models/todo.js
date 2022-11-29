@@ -3,7 +3,7 @@ const Joi = require("joi");
 
 const todoSchema = new Schema(
   {
-    type: {
+    status: {
       type: String,
       enum: ["inProgress", "complete", "failed"],
       default: "InProgress",
@@ -22,7 +22,7 @@ const todoSchema = new Schema(
     },
     owner: {
       type: Schema.Types.ObjectId,
-      ref: "authUser",
+      ref: "user",
       required: true,
     },
   },
@@ -30,7 +30,7 @@ const todoSchema = new Schema(
 );
 
 const joiTodoSchema = Joi.object({
-  type: Joi.string().required(),
+  status: Joi.string().required(),
   taskName: Joi.string().max(15).min(1).required(),
   description: Joi.string(),
 });

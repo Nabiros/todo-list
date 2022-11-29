@@ -22,7 +22,7 @@ const userSchema = new Schema(
 
 const joiUserSchema = Joi.object({
   password: Joi.string().min(6).required(),
-  name: Joi.string().email().required(),
+  email: Joi.string().email().required(),
 });
 
 const User = model("user", userSchema);
